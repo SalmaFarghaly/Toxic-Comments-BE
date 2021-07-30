@@ -1,5 +1,12 @@
 # Toxic-Comments-BE
-This repo contains the backend for the toxic comments classification models
+This repo contains the backend for the toxic comments classification models which are used in Detoxi chrome extension.
+
+## Demo Video
+This demo video demonstartes the functionality of Detoxi extension which is responsible to hide the toxic tweets from twitter
+
+
+https://user-images.githubusercontent.com/59613960/127669505-64a3ae55-29b5-4f9e-9bfd-1ef5a218ce5d.mp4
+
 
 
 ## How to run the project ?
@@ -12,5 +19,8 @@ This repo contains the backend for the toxic comments classification models
     
  
 ### Click [here](https://github.com/rehabahmed98/DetoxiExtension) to go to Detoxi frontend extension.
+
+
+
    
 
