@@ -6,5 +6,6 @@
     uvicorn app:app --reload
     
     
-   ### [link to Detoxi frontend extension] (https://github.com/rehabahmed98/DetoxiExtension)
+ 
+[click here to go to Detoxi frontend extension] (https://github.com/rehabahmed98/DetoxiExtension)
    
