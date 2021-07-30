@@ -92,7 +92,7 @@ def get_name(name: str):
     return {'Welcome To Krish Youtube Channel': f'{name}'}
 
 # 3. Expose the prediction functionality, make a prediction from the passed
-#    JSON data and return the predicted Bank Note with the confidence
+#    JSON data and return the predicted toxicity for each tweet
 @app.post('/predict')
 def predict_tweets(data:comment):
 
@@ -112,10 +112,10 @@ def predict_tweets(data:comment):
     Train_X_Tfidf = TfIDFtokenizer.transform(tweets)
     NBpred = NB.predict(Train_X_Tfidf )
 
-    # predictions_NB*=100
+   
     NBpred=np.around(NBpred)
     print(NBpred)
-    # pred_valuesNB=[1 if i >50  else 0 for i in predictions_NB ]
+    
 
     # GRU prediction
     test_df=get_features(ans)
@@ -126,24 +126,15 @@ def predict_tweets(data:comment):
     testX_pad  = pad_sequences(padTesting)
     GRUpred = GRUmodel.predict([testX_pad,testFeat],batch_size = 32,verbose=1)
 
-    # pred_values*=100
-    # pred_valuesGRU=[1 if i >50  else 0 for i in pred_values ]
     GRUpred=tf.reshape(GRUpred, [-1]).numpy()
     GRUpred=np.around(GRUpred)
 
    # Get BERT predictions
-    print("GRUPREDSSS",GRUpred)
-    # print(ans['lemmatize_text'])
     original_results = tf.sigmoid(classifier_model(tf.constant(ans['lemmatize_text'])))
     print(original_results)
     BertPred=tf.reshape(original_results, [-1]).numpy()
     BertPred=np.around(BertPred)
     print(BertPred)
-    # float_arr = np.vstack(original_results[:, :]).astype(np.float)
-    # float_arr.flatten()
-    # pred_values*=100
-    # pred_valuesBERT=[1 if i >50  else 0 for i in pred_values ]
-    # pred_valuesBERT=np.around(original_results.flatten())
     predNBlist=NBpred.tolist()
     predGRUlist=GRUpred.tolist()
     predBertlist=BertPred.tolist()
@@ -159,9 +150,6 @@ def predict_tweets(data:comment):
     FinalPredlist=FinalPred.tolist()
 
     return {
-        # 'predNB': predNBlist,
-        # 'predGRU':predGRUlist,
-        # 'predBERT':predBertlist,
         'FinalPred':FinalPredlist
     }
 
@@ -171,5 +159,7 @@ def predict_tweets(data:comment):
 #    Will run on http://127.0.0.1:8000
 if __name__ == '__main__':
     uvicorn.run(app, host='127.0.0.1', port=8000)
-    
-#uvicorn app:app --reload
+ 
+
+# Command to run 
+# uvicorn app:app --reload
