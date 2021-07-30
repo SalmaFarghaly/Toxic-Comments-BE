@@ -7,5 +7,5 @@
     
     
  
-[click here to go to Detoxi frontend extension] (https://github.com/rehabahmed98/DetoxiExtension)
+Click [here](https://github.com/rehabahmed98/DetoxiExtension) to go to Detoxi frontend extension.
    
